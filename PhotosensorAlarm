@@ -1,0 +1,24 @@
+const int PhotoSensor = A0;
+const int speakerPin = 8;
+
+const int threshold = 300;
+
+void setup() {
+  pinMode(speakerPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(PhotoSensor);
+
+  Serial.println(lightValue);
+
+  if (lightValue > threshold) {
+    tone(speakerPin, 500);  // Play 500 Hz sound
+  }
+  else {
+    noTone(speakerPin);     // Stop sound
+  }
+
+  delay(200);
+}
